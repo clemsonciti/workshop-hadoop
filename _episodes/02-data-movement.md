@@ -23,7 +23,7 @@ You do this and you do that.
 > >   printf("Hello World!");
 > >   return 0;
 > > }
-> {: .language-bash}
+> {: .language-c}
 >
 {: .slide}
 
