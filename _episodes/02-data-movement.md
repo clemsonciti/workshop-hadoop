@@ -18,11 +18,13 @@ You do this and you do that.
 
 > ## This is another slide
 >
-> > #include <stdio.h>
-> > int main(int argc, char* argv[]) {
-> >   printf("Hello World!");
-> >   return 0;
-> > }
+> ~~~
+> #include <stdio.h>
+> int main(int argc, char* argv[]) {
+>   printf("Hello World!");
+>   return 0;
+> }
+> ~~~
 > {: .language-c}
 >
 {: .slide}
@@ -31,7 +33,7 @@ You do this and you do that.
 > Is this a question?
 > 
 > > ## Solution
-> > It is a qeustion
+> > It is a question
 > {: .solution}
 {: .challenge}
 
