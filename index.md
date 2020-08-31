@@ -5,20 +5,22 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 ---
 
 > ## Instructor
-> - **Instructor**: Clemson Tigers
-> - **Office**: the Death Valley
-> - **Office Hours**: 24/7
-> - **Email**: tigers AT clemson DOT edu
-> - **Phone**: 123 456 7890
+> - **Instructor**: Linh B. Ngo
+> - **Email**: lngo AT clemson DOT edu
 {: .prereq}
 
 > ## Workshop Description
-> Course description goes here
+> This workshop introduces participants to the Hadoop ecosystem deployable on Palmetto. We will cover 
+> Hadoop's architecture, how it can be deployed on Palmetto, import and export of big-data, basic usage, and 
+> how to submit scalable data analysis jobs. This workshop will incorporate the use of JupyterHub and Jupyter "Notebooks". 
+> An understanding of the Linux command line and some Python experience is necessary.
 >
 {: .prereq}
 
 > ## Prerequisites
-> This workshop requires ...
+> This workshop requires:
+> - Linux ([Introduction to Linux workshop]())
+> - Python ([Python I workshop]())
 {: .prereq}
 
 {% include links.md %}
