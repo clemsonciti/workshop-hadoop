@@ -19,7 +19,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="last-modified" content="2020-05-15 18:39:07 -0400">
+    <meta http-equiv="last-modified" content="2020-08-31 10:10:20 -0500">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- meta "search-domain" used for google site search function google_search() -->
     <meta name="search-domain" value="">
@@ -27,6 +27,8 @@
     <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap-theme.css" />
     <link rel="stylesheet" type="text/css" href="./assets/css/lesson.css" />
     <link rel="stylesheet" type="text/css" href="./assets/css/syntax.css" />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+
 
     
 
@@ -46,7 +48,7 @@
     <link rel="icon" type="image/png" href="./assets/favicons/swc/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="./assets/favicons/swc/favicon-16x16.png" sizes="16x16" />
     <link rel="icon" type="image/png" href="./assets/favicons/swc/favicon-128.png" sizes="128x128" />
-    <meta name="application-name" content="Software Carpentry - Lesson Title"/>
+    <meta name="application-name" content="Software Carpentry - Introduction to Hadoop using Python"/>
     <meta name="msapplication-TileColor" content="#FFFFFF" />
     <meta name="msapplication-TileImage" content="./assets/favicons/swc/mstile-144x144.png" />
     <meta name="msapplication-square70x70logo" content="./assets/favicons/swc/mstile-70x70.png" />
@@ -63,7 +65,7 @@
 	<![endif]-->
 
   <title>
-  Lesson Title
+  Introduction to Hadoop using Python
   </title>
 
   </head>
@@ -73,11 +75,10 @@
 
 
 <div class="panel panel-default life-cycle">
-  <div id="life-cycle" class="panel-body pre-alpha">
-    This lesson is still being designed and assembled (Pre-Alpha version)
+  <div id="life-cycle" class="panel-body beta">
+    This lesson is being piloted (Beta version)
   </div>
 </div>
-
 
 
 
@@ -123,8 +124,8 @@
       </button>
 
       
-      <a href="http://cs.wcupa.edu/lngo/teaching" class="pull-left">
-        <img class="navbar-logo" src="./assets/img/wcupa.png" alt="West Chester University logo" />
+      <a href="https://www.palmetto.clemson.edu" class="pull-left">
+        <img class="navbar-logo" src="./assets/img/clemson.png" alt="West Chester University logo" />
       </a>
 
       
@@ -135,44 +136,8 @@
       <ul class="nav navbar-nav">
 
         
-	
-        <li><a href="./setup.html">Setup</a></li>
-
-        
-        <li class="dropdown">
-          <a href="./" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Episodes <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            
-            
-            <li><a href="./01-introduction/index.html">Introduction</a></li>
-            
-	    <li role="separator" class="divider"></li>
-            <li><a href="./aio/index.html">All in one page (Beta)</a></li>
-          </ul>
-        </li>
-	
 
 	
-	
-        <li class="dropdown">
-          <a href="./" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extras <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="./reference.html">Reference</a></li>
-            
-            
-            <li><a href="./about/index.html">About</a></li>
-            
-            
-            <li><a href="./discuss/index.html">Discussion</a></li>
-            
-            
-            <li><a href="./figures/index.html">Figures</a></li>
-            
-            
-            <li><a href="./guide/index.html">Instructor Notes</a></li>
-            
-          </ul>
-        </li>
 	
 
 	
@@ -202,7 +167,8 @@
 
 
 
-<h1 class="maintitle"><a href="./index.html">Lesson Title</a></h1>
+
+<h1 class="maintitle"></h1>
 
 
 
@@ -210,296 +176,27 @@
   <blockquote class="prereq">
   <h2 id="instructor">Instructor</h2>
   <ul>
-    <li><strong>Instructor</strong>: Golden Rams</li>
-    <li><strong>Office</strong>: the Quad</li>
-    <li><strong>Office Hours</strong>: 24/7</li>
-    <li><strong>Email</strong>: goldenrams AT wcupa DOT edu</li>
-    <li><strong>Phone</strong>: 123 456 7890</li>
+    <li><strong>Instructor</strong>: Linh B. Ngo</li>
+    <li><strong>Email</strong>: lngo AT clemson DOT edu</li>
   </ul>
 </blockquote>
 
 <blockquote class="prereq">
-  <h2 id="course-description">Course Description</h2>
-  <p>Course description goes here</p>
-
-</blockquote>
-
-<blockquote class="objectives">
-  <h2 id="learning-objectives">Learning Objectives:</h2>
-
-  <h3 id="student-learning-objectives">Student Learning Objectives:</h3>
-  <ul>
-    <li>SLO1</li>
-  </ul>
-
-  <h3 id="general-education-learning-objectives">General Education Learning Objectives:</h3>
-  <ul>
-    <li>GELO1</li>
-  </ul>
-
-  <h3 id="alignment-of-course-to-general-education-goals">Alignment of Course to General Education Goals:</h3>
-  <ul>
-    <li>Alignment 1</li>
-  </ul>
-
-  <h3 id="artifacts-used-to-demonstrate-student-learning-outcomes">Artifacts used to demonstrate Student Learning Outcomes:</h3>
+  <h2 id="workshop-description">Workshop Description</h2>
+  <p>This workshop introduces participants to the Hadoop ecosystem deployable on Palmetto. We will cover 
+Hadoop’s architecture, how it can be deployed on Palmetto, import and export of big-data, basic usage, and 
+how to submit scalable data analysis jobs. This workshop will incorporate the use of JupyterHub and Jupyter “Notebooks”. 
+An understanding of the Linux command line and some Python experience is necessary.</p>
 
 </blockquote>
 
 <blockquote class="prereq">
   <h2 id="prerequisites">Prerequisites</h2>
-  <p>This course requires …</p>
-</blockquote>
-
-<blockquote class="prereq">
-  <h2 id="required-text-either-print-or-e-book">Required Text (either print or e-book):</h2>
-
-</blockquote>
-
-<blockquote class="keypoints">
-  <h2 id="evaluation-policy">Evaluation Policy:</h2>
-
-  <h3 id="grade-distributions">Grade Distributions</h3>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Percentage</th>
-        <th>Tasks</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>20%</td>
-        <td>Homework Sets (approximately 4-5 homework sets)</td>
-      </tr>
-      <tr>
-        <td>15%</td>
-        <td>Labs (approximately biweekly labs)</td>
-      </tr>
-      <tr>
-        <td>5%</td>
-        <td>Problets (online practice exercises)</td>
-      </tr>
-      <tr>
-        <td>45%</td>
-        <td>Three Midterm Exams (15% each)</td>
-      </tr>
-      <tr>
-        <td>15%</td>
-        <td>Final Exam</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3 id="grade-scale">Grade Scale:</h3>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Numeric</th>
-        <th>Letter</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>100-93</td>
-        <td>A</td>
-      </tr>
-      <tr>
-        <td>92-90</td>
-        <td>A-</td>
-      </tr>
-      <tr>
-        <td>89-87</td>
-        <td>B+</td>
-      </tr>
-      <tr>
-        <td>86-83</td>
-        <td>B</td>
-      </tr>
-      <tr>
-        <td>82-80</td>
-        <td>B-</td>
-      </tr>
-      <tr>
-        <td>79-77</td>
-        <td>C+</td>
-      </tr>
-      <tr>
-        <td>76-73</td>
-        <td>C</td>
-      </tr>
-      <tr>
-        <td>72-70</td>
-        <td>C-</td>
-      </tr>
-      <tr>
-        <td>69-67</td>
-        <td>D+</td>
-      </tr>
-      <tr>
-        <td>66-63</td>
-        <td>D</td>
-      </tr>
-      <tr>
-        <td>62-60</td>
-        <td>D-</td>
-      </tr>
-      <tr>
-        <td>&lt;= 59</td>
-        <td>F</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3 id="lateness-policy">Lateness Policy:</h3>
-  <p>Assignments that are late are assessed a 10% per day late penalty.
-Saturday and Sunday are each days.</p>
-</blockquote>
-
-<blockquote class="keypoints">
-  <h2 id="policy">Policy</h2>
-
-  <h3 id="university-sanctioned-events-policy">University Sanctioned Events Policy:</h3>
-  <p>Students participating in participating in University sanctioned events such
-as, but not limited to, the Marching Band, musical ensembles, theatre group,
-athletic events, forensics competition, etc., will be granted an excused
-absence for class periods missed. Students will be granted the privilege of
-taking, at an alternative time to be determined by the professor, scheduled
-examinations or quizzes that will be missed. I will designate such times prior
-to the event and reserve the right to provide a fair alternative to taking the
-examination or quiz that will be missed. Students must submit original
-documentation on University letterhead signed by the activity director, coach,
-or adviser detailing the specifics of the event in advance. Specific
-requirements include:</p>
-
-  <ol>
-    <li>Responsibility for meeting academic requirements rests with the student.</li>
-    <li>Students are expected to notify their professors as soon as they know they
-will be missing class due to a University sanctioned event.</li>
-    <li>Students are expected to complete the work requirement for each class and
-turn in assignments due on days of the event prior to their due dates unless
-other arrangements are made with myself.</li>
-    <li>If a scheduled event is postponed or canceled, the student is expected to
-go to class.</li>
-    <li>Students are not excused from classes for practice on nonevent days.</li>
-  </ol>
-
-  <p>The following are specifics for the student athlete:</p>
-  <ol>
-    <li>The student athlete is expected, where possible, to schedule classes on
-days and at hours that do not conflict with athletic schedules.</li>
-    <li>Athletes are not excused from classes for practice or training-room
-treatment on nongame days.</li>
-  </ol>
-
-  <h3 id="email-policy">Email Policy:</h3>
-  <p>It is expected that faculty, staff, and students activate and maintain regular
-access to University provided e-mail accounts. Official university
-communications, including those from your instructor, will be sent through your
-university e-mail account. You are responsible for accessing that mail to be
-sure to obtain official University communications. Failure to access will not
-exempt individuals from the responsibilities associated with this course.</p>
-
-  <p>Please abide by the following email etiquette policies to ensure clear
-communication:</p>
+  <p>This workshop requires:</p>
   <ul>
-    <li><strong>Subject Line</strong>:	Please include a descriptive and specific subject heading for
-all of your emails, including course and section number (e.g. “CSC 050-23:
-Question about lab 1”).</li>
-    <li><strong>Greeting</strong>:	Please make a clear and appropriate greeting; I will not answer
-emails addressed to “hey” or “yo”. Please address me as Dr. Ngo, or “Professor”.</li>
-    <li><strong>Tone &amp; Style</strong>:	Always use a tone and language that is appropriate to an
-academic setting; I will not respond to emails that are written in short-hand
-or without proper punctuation and grammar. Your emails should not resemble a
-text message.</li>
-    <li><strong>Sign and Proofread</strong>:	Always sign your full name, especially if you are
-writing from your smart phone. Always proofread your emails before sending.</li>
-    <li><strong>Email Account</strong>:	I do not care which email account you send email from, as
-long as it is clearly addressed and signed so that I know who you are. But
-please be advised to appropriately link the email that you wish to use with
-myWCU and D2L; I will be using those services to send out emails to the
-entire class. It is your responsibility to make sure this is configured
-correctly so that you receive my emails.</li>
+    <li>Linux (<a href="">Introduction to Linux workshop</a>)</li>
+    <li>Python (<a href="">Python I workshop</a>)</li>
   </ul>
-
-  <h3 id="computer-science-department-dishonesty-policy">Computer Science Department Dishonesty Policy:</h3>
-  <p>The Computer Science Committee has adopted the following policies in regard
-to academic dishonesty in Computer Science classes:</p>
-  <ol>
-    <li>A student found to be academically dishonest in an assignment will receive
-zero for that assignment if it is his/her first offense in that class [the
-course, not the class period], but an F for the course if it is for his/her
-second offense in that class [the course].</li>
-    <li>A student found to be academically dishonest in a test will receive the
-grade of F in that class [the course].</li>
-    <li>For the purposes of this document on academic dishonesty, every form or
-method of evaluation in a class will be considered as being of one of two
-types: an assignment or a test. Assignments include homework assignments, and
-short quizzes [and labs]. Tests include final exams and major exams. An
-instructor has, subject to these guidelines, the discretion to determine the
-type of any other form of evaluation, such as a project, in his/her class.</li>
-    <li>A student who has received the grade of F in a course because of academic
-dishonesty and who wants or is required to repeat that course may re-take
-that course only as a regularly scheduled course that is open to the student
-community in general. In exceptional circumstances, this condition may be
-revoked, but only by an explicit action to that effect by the full Computer
-Science Committee, and only then on a case by case basis.</li>
-    <li>The term academic dishonesty is used throughout in the sense provided by
-the rules and regulations of West Chester University. The following is taken
-from The Ram’s Eye View of 1997-1998: <strong>“Academic dishonesty as it applies to
-students includes but is not limited to academic cheating; plagiarism; the
-sale, purchase, or exchange of term papers or research papers; falsification
-of information which includes any form of providing false or misleading
-information, written, electronic, or oral; or of altering or falsifying
-official institutional records. Plagiarism is defined as copying another’s
-work or portion thereof and/or using ideas and concepts of another and
-presenting them as one’s own without giving proper credit to the source.”</strong></li>
-  </ol>
-
-  <h3 id="no-grade-violation-of-academic-integrity-and-violation-of-student-code-of-conduct-policy">No-Grade, Violation of Academic Integrity, and Violation of Student Code of Conduct Policy:</h3>
-  <p>For questions regarding Academic Dishonesty, the No-Grade policy, Sexual
-Harassment, or the Student Code of Conduct, students are encouraged to refer
-to their major department’s handbook, the Undergraduate Course Catalogue, the
-Rams Eye View, or the University Web Site. Please understand that improper
-conduct in any of these areas will not be tolerated and may result in
-immediate ejections from the class.</p>
-
-  <h3 id="ada-policy">ADA Policy:</h3>
-  <p>If you have a disability that requires accommodations under the Americans
-with Disabilities Act (ADA), please present your letter of accommodations
-and meet with me as soon as possible so that I can support your success in
-an informed manner. Accommodations cannot be granted retroactively. If you
-would like to know more about West Chester University’s Services for Students
-with Disabilities (OSSD), please contact the OSSD which is located at 223
-Lawrence Center. The OSSD hours of Operation are
-Monday – Friday 8:30 a.m. – 4:30 p.m. Their phone number is 610-436-2564,
-fax number is 610-436-2600, and their email address is <a href="ossd@wcupa.edu">ossd@wcupa.edu</a>.
-More information can be found at
-the <a href="http://www.wcupa.edu/ussss/ossd">OSSD website</a>.</p>
-
-  <h3 id="title-ix-statement">Title IX Statement:</h3>
-  <p>West Chester University and its faculty are committed to assuring a safe and
-productive educational environment for all students. In order to meet this
-commitment and to comply with Title IX of the Education Amendments of 1972
-and guidance from the Office for Civil Rights, the University requires
-faculty members to report incidents of sexual violence shared by students
-to the University’s Title IX Coordinator, Ms. Lynn Klingensmith. The only
-exceptions to the faculty member’s reporting obligation are when incidents
-of sexual violence are communicated by a student during a classroom
-discussion, in a writing assignment for a class, or as part of a
-University-approved research project. Faculty members are obligated to
-report sexual violence or any other abuse of a student who was, or is, a
-child (a person under 18 years of age) when the abuse allegedly occurred to
-the person designated in the University protection of minors policy.<br />
-Information regarding the reporting of sexual violence and the resources
-that are available to victims of sexual violence is set forth at the
-<a href="http://www.wcupa.edu/_admin/social.equity">Office of Social Equity website</a>.</p>
-
-  <h3 id="emergency-contact">Emergency Contact:</h3>
-  <p>In the event of an emergency during class, the phone number for WCU’s
-Department of Public Safety is 610-436-3311.</p>
 </blockquote>
 
 
@@ -551,6 +248,9 @@ Department of Public Safety is 610-436-3311.</p>
     
     
   
+    
+    
+  
   
 
   <table class="table table-striped">
@@ -586,6 +286,29 @@ Department of Public Safety is 610-436-3311.</p>
     </tr>
     
   
+    
+    
+    
+    
+    <tr>
+      <td class="col-md-3">
+        
+	2. <a href="./02-data-movement/index.html">Data movement on Hadoop</a>
+      </td>
+      <td class="col-md-7">
+        
+          
+            
+              How do I move data in and out of the Hadoop cluster
+
+              
+            
+          
+        
+      </td>
+    </tr>
+    
+  
   
   
   <tr>
@@ -604,28 +327,20 @@ Department of Public Safety is 610-436-3311.</p>
 
 <!--  
       
-
-
-
-
-
-
 <footer>
   <div class="row">
-    <div class="col-md-6 copyright" align="left">
+    <div class="col-md-6" align="left">
+      <h4>
+	Copyright &copy; 2016–2020
 	
-	Licensed under <a href="">CC-BY 4.0</a> 2018–2020
-	by <a href="">The Carpentries</a>
-        <br>
-        Licensed under <a href="">CC-BY 4.0</a> 2016–2018
-	by <a href="">Software Carpentry Foundation</a>
+	<a href="">Software Carpentry</a>
 	
+      </h4>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12" align="center">
-      Using <a href="https://github.com/carpentries/styles/">The Carpentries style</a>
-      version <a href="https://github.com/carpentries/styles/releases/tag/v9.5.3">9.5.3</a>.
+    <div class="col-md-6" align="right">
+      <h4>
+	<a href="mailto:lngo@clemson.edu">Contact The Carpentries</a>
+      </h4>
     </div>
   </div>
 </footer>

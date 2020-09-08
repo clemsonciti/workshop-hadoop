@@ -77,7 +77,11 @@
 .testimonial h2 { padding-top: 5px; padding-bottom: 5px; font-size: 20px; background: linear-gradient(to bottom, #fc8dc1, #fc98c7); border-color: #fc8dc1; margin-top: 0px; margin-left: -5px; }
 .testimonial h2:before { font-family: 'Glyphicons Halflings'; content: ""; float: left; padding-left: 5px; padding-right: 5px; display: inline-block; -webkit-font-smoothing: antialiased; }
 
-.callout h3, .challenge h3, .checklist h3, .discussion h3, .keypoints h3, .objectives h3, .prereq h3, .solution h3, .testimonial h3 { font-size: 18px; }
+.slide { padding: 0 0 5px 5px; border: 1px solid; border-color: #aff5ef; border-radius: 4px; margin: 15px 5px 10px 0; }
+.slide h2 { padding-top: 5px; padding-bottom: 5px; font-size: 20px; background: linear-gradient(to bottom, #aff5ef, #b7f6f1); border-color: #aff5ef; margin-top: 0px; margin-left: -5px; }
+.slide h2:before { font-family: 'Glyphicons Halflings'; content: ""; float: left; padding-left: 5px; padding-right: 5px; display: inline-block; -webkit-font-smoothing: antialiased; }
+
+.callout h3, .challenge h3, .checklist h3, .discussion h3, .keypoints h3, .objectives h3, .prereq h3, .solution h3, .slide h3, .testimonial h3 { font-size: 18px; }
 
 .challenge { background-color: #eec27520; }
 
@@ -98,6 +102,8 @@
 .solution { background-color: #ded4b94d; }
 
 .testimonial { background-color: #fc8dc120; }
+
+.slide { background-color: #eec27520; }
 
 blockquote p { margin: 5px; }
 

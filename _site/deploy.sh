@@ -1,6 +1,5 @@
 #!/bin/bash
 
-python bin/lesson_initialize.py
-
+bundle install
 bundle exec jekyll build
 bundle exec jekyll server
