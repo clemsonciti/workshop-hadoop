@@ -86,31 +86,79 @@ keypoints:
 {: .slide}
 
 
-workshop-python-intro-to-hadoop  intro-to-hadoop-01.ipynb
-Introduction to Hadoop MapReduce
-Python Jupyter notebook supports execution of Linux command inside the notebook cells. This is done by adding the ! to the beginning of the command line. It should be noted that each command begins with a ! will create a new bash shell and close this cell once the execution is done:
+> ## Hadoop main commands
+> 
+> Users can interact with Hadoop via command and subcommand. The primary command to interact
+> with Hadoop is `hdfs`. A subcommand related to file system operations is `dfs`. Entering these
+> commands without parameters will give you the usage. 
+> 
+> ~~~
+> $ hdfs
+> $ hdfs dfs
+> ~~~
+> {: .language-bash}
+{: .slide}
 
-Full path is required
-Temporary results and environmental variables will be lost
-We need to initialize Kerberos authentication mechanism
+> ## Specifying configuration location
+> 
+> We need to specify the location of the configuration files for our hadoop cluster. This
+> can be done by setting the `HDAOOP_CONF_DIR` environment variable. 
+>
+> ~~~
+> $ export HADOOP_CONF_DIR="/home/$USER/hadoop_palmetto/config/"
+> $ hdfs dfs -mkdir /user/
+> $ hdfs dfs -mkdir /user/$USER
+> $ hdfs dfs -ls /user/
+> $ hdfs dfs -ls /user/$USER
+> ~~~
+> {: language-bash}
+>
+> <img src="../fig/02-data/data_04.png" alt="creating directories" style="height:250px">
+{: .slide}
 
-Interaction with Hadoop Distributed File System is done through hdfs and its sub-commands
 
-!./init_hadoop.sh
-!hdfs
-!hdfs dfs
-We need to specify the location of the configuration files for our hadoop cluster EVERYTIME we run, otherwise the command will read from the default config location
-!hdfs dfs -ls /
-!hdfs --config ~/hadoop_palmetto/config dfs -ls /
-Challenge
-Create a directory named intro-to-hadoop inside your user directory on HDFS
 
-!hdfs --config ~/hadoop_palmetto/config dfs -mkdir -p /user/$USER/intro-to-hadoop
-!hdfs --config ~/hadoop_palmetto/config dfs -ls /user/lngo
-Challenge
-Upload the text directory into the newly created intro-to-hadoop directory.
+> ## Challenge: creating a directory
+> 
+> Create a directory named `intro-to-hadoop` inside your user directory on HDFS. Confirm
+> that the directory was successfully created. 
+>
+> > ## Solution: 
+> > 
+> > ~~~
+> > $ hdfs dfs -mkdir /user/$USER/intro-to-hadoop
+> > $ hdfs dfs -ls /user/$USER
+> > ~~~
+> > {: .language-bash}
+> {: .solution}
+{: .challenge}
 
-!hdfs --config ~/hadoop_palmetto/config dfs -put
+> ## Home directory on HDFS
+> 
+> In HDFS, the home directory is defaulted to be `/user/$USER` with `$USER` is
+> your username. 
+>
+> ~~~
+> $ hdfs dfs -ls /user/$USER
+> $ hdfs dfs -ls 
+> $ hdfs dfs -ls .
+> ~~~
+> {: language-bash}
+>
+> <img src="../fig/02-data/data_04.png" alt="creating directories" style="height:250px">
+{: .slide}
+
+> ## Uploading and downloading data
+> 
+> To upload data into HDFS, we use the subsubcommand `put`. To download data from HDFS, 
+> we use the subsubcommand `get`. 
+>
+> ~~~
+> $ hdfs dfs -put /zfs/citi/complete-shakespeare.txt intro-to-hadoop/
+> $ hdfs dfs -ls intro-to-hadoop
+> $ hdfs dfs -head intro-to-hadoop/complete-shakespeare.txt
+> ~~~
+> {: .bash-language}
 !hdfs --config ~/hadoop_palmetto/config dfs -put text intro-to-hadoop
  
 Challenge

@@ -1,5 +1,5 @@
 ---
-title: "Debugging Hadoop MapReduce"
+title: "Programming and debugging Hadoop MapReduce"
 teaching: 0
 exercises: 0
 questions:
