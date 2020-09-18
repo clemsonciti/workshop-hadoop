@@ -50,8 +50,6 @@ keypoints:
 > ~~~
 > {: .language-bash}
 >
-> <img src="../fig/02-data/data_01.png" alt="myhadoop template" style="height:200px">
->
 > - `init_hadoop.sh`: format and launch a new Hadoop cluster on the allocated resources. 
 > - `test_hadoop.sh`: quickly test the newly launched cluster.
 > - `stop_hadoop.sh`: stop the Hadoop cluster and clean up all data storage.
@@ -70,7 +68,6 @@ keypoints:
 > launch will show the number of live data nodes being one less than the total number of nodes
 > requested from Palmetto. 
 >
-> <img src="../fig/02-data/data_02.png" alt="launching myhadoop" style="height:900px">
 {: .slide}
 
 > ## Testing myhadoop
@@ -82,7 +79,6 @@ keypoints:
 >
 > A succesful test will show the completed run of the test WordCount program
 >
-> <img src="../fig/02-data/data_03.png" alt="testing myhadoop" style="height:250px">
 {: .slide}
 
 
@@ -113,7 +109,6 @@ keypoints:
 > ~~~
 > {: language-bash}
 >
-> <img src="../fig/02-data/data_04.png" alt="creating directories" style="height:250px">
 {: .slide}
 
 
@@ -145,10 +140,9 @@ keypoints:
 > ~~~
 > {: language-bash}
 >
-> <img src="../fig/02-data/data_04.png" alt="creating directories" style="height:250px">
 {: .slide}
 
-> ## Uploading and downloading data
+> ## Uploading and downloading files
 > 
 > To upload data into HDFS, we use the subsubcommand `put`. To download data from HDFS, 
 > we use the subsubcommand `get`. 
@@ -157,141 +151,35 @@ keypoints:
 > $ hdfs dfs -put /zfs/citi/complete-shakespeare.txt intro-to-hadoop/
 > $ hdfs dfs -ls intro-to-hadoop
 > $ hdfs dfs -head intro-to-hadoop/complete-shakespeare.txt
+> $ hdfs dfs -get intro-to-hadoop/complete-shakespeare.txt ~/shakespeare-complete.txt
+> $ head ~/shakespeare-complete.txt
+> $ diff /zfs/citi/complete-shakespeare.txt ~/shakespeare-complete.txt
 > ~~~
-> {: .bash-language}
-!hdfs --config ~/hadoop_palmetto/config dfs -put text intro-to-hadoop
- 
-Challenge
-Check the health status of the directories above in HDFS using fsck:
-
-hdfs fsck <path-to-directory> -files -blocks -locations
-!hdfs --config ~/hadoop_palmetto/config fsck intro-to-hadoop/text/complete-shakespeare.txt -files -blocks -locations
-MapReduce Programming Paradigm
-What is “map”? – A function/procedure that is applied to every individual elements of a collection/list/array/…
-
-int square(x) { return x*x;}
-map square [1,2,3,4] -> [1,4,9,16]
-What is “reduce”? – A function/procedure that performs an operation on a list. This operation will “fold/reduce” this list into a single value (or a smaller subset)
-
-reduce ([1,2,3,4]) using sum -> 10
-reduce ([1,2,3,4]) using multiply -> 24
-MapReduce is an old concept in functional programming. It is naturally applicable in HDFS:
-
-map tasks are performed on top of individual data blocks (mainly to filter and decrease raw data contents while increase data value
-reduce tasks are performed on intermediate results from map tasks (should now be significantly decreased in size) to calculate the final results.
-1. The Hello World of Hadoop: Word Count
-!mkdir codes
-!hdfs --config ~/hadoop_palmetto/config dfs -cat intro-to-hadoop/text/complete-shakespeare.txt \
-    2>/dev/null | head -n 100
-%%writefile codes/wordcountMapper.py
-#!/software/spackages/linux-centos8-x86_64/gcc-8.3.1/anaconda3-2019.10-v5cuhr6keyz5ryxcwvv2jkzfj2gwrj4a/bin/python                                          
-import sys                                                                                                
-for oneLine in sys.stdin:
-    oneLine = oneLine.strip()
-    for word in oneLine.split(" "):
-        if word != "":
-            print ('%s\t%s' % (word, 1)) 
-!hdfs --config ~/hadoop_palmetto/config dfs -cat intro-to-hadoop/text/complete-shakespeare.txt \
-    2>/dev/null \
-    | head -n 20 \
-    | python ./codes/wordcountMapper.py
-!hdfs --config ~/hadoop_palmetto/config dfs -cat intro-to-hadoop/text/complete-shakespeare.txt \
-    2>/dev/null \
-    | head -n 20 \
-    | python ./codes/wordcountMapper.py \
-    | sort
-%%writefile codes/wordcountReducer.py
-#!/software/spackages/linux-centos8-x86_64/gcc-8.3.1/anaconda3-2019.10-v5cuhr6keyz5ryxcwvv2jkzfj2gwrj4a/bin/python
-import sys
-
-current_word = None
-total_word_count = 0
-
-for line in sys.stdin:
-    line = line.strip()
-    word, count = line.split("\t", 1)
-    try:
-        count = int(count)
-    except ValueError:
-        continue
-    
-    if current_word == word:
-        total_word_count += count
-    else:
-        if current_word:
-            print ("%s\t%s" % (current_word, total_word_count))
-        current_word = word
-        total_word_count = 1
-        
-if current_word == word:
-    print ("%s\t%s" % (current_word, total_word_count))
-!hdfs --config ~/hadoop_palmetto/config dfs -cat intro-to-hadoop/text/complete-shakespeare.txt \
-    2>/dev/null \
-    | head -n 20 \
-    | python ./codes/wordcountMapper.py \
-    | sort \
-    | python ./codes/wordcountReducer.py
-!hdfs --config ~/hadoop_palmetto/config dfs -rm -R intro-to-hadoop/output-wordcount
-!mapred --config ~/hadoop_palmetto/config streaming \
-    -input intro-to-hadoop/text/complete-shakespeare.txt \
-    -output intro-to-hadoop/output-wordcount \
-    -file ./codes/wordcountMapper.py \
-    -mapper wordcountMapper.py \
-    -file ./codes/wordcountReducer.py \
-    -reducer wordcountReducer.py
-!hdfs --config ~/hadoop_palmetto/config dfs -ls intro-to-hadoop/output-wordcount
-!hdfs --config ~/hadoop_palmetto/config dfs -cat intro-to-hadoop/output-wordcount/part-00000 \
-    2>/dev/null | head -n 100
-Challenge
-Modify wordcountMapper.py so that punctuations and capitalization are no longer factors in determining unique words
-
-%%writefile codes/wordcountEnhancedMapper.py
-#!/software/spackages/linux-centos8-x86_64/gcc-8.3.1/anaconda3-2019.10-v5cuhr6keyz5ryxcwvv2jkzfj2gwrj4a/bin/python                                          
-import sys                     
-import string
-
-translator = str.maketrans('', '', string.punctuation)
-
-for oneLine in sys.stdin:
-    oneLine = oneLine.strip()
-    for word in oneLine.split(" "):
-        if word != "":
-            newWord = word.translate(translator).lower()
-            print ('%s\t%s' % (_______, 1)) 
-!hdfs dfs -rm -R intro-to-hadoop/output-wordcount-enhanced
-!ssh dsciutil yarn jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar \
-    -input intro-to-hadoop/text/gutenberg-shakespeare.txt \
-    -output intro-to-hadoop/output-wordcount \
-    -file ____________________________________________________ \
-    -mapper _____________________ \
-    -file ____________________________________________________ \
-    -reducer _____________________ \
-This website does not host notebooks, it only renders notebooks available on other websites.
-
-Delivered by Fastly, Rendered by OVHCloud
-
-nbviewer GitHub repository.
-
-nbviewer version: e83752b
-
-nbconvert version: 5.6.1
-
-Rendered an hour ago
+> {: .language-bash}
+>
+{: .slide}
 
 
+> ## Uploading and downloading directories
+>
+> The `put` and `get` subsubcommands can also be used to move directories as well as 
+> individual files. 
+>
+> ~~~
+> $ hdfs dfs -put /zfs/citi/movielens intro-to-hadoop/
+> $ hdfs dfs -ls intro-to-hadoop
+> $ hdfs dfs -ls intro-to-hadoop/movielens
+> ~~~
+> {: .language-bash}
+>
+{: .slide}
 
-
-
-
-
-
-
-> ## Copying the myhadoop template from /zfs/citi
-> Is this a question?
+> ## Checking health status of files and directories in HDFS:
 > 
-> > ## Solution
-> > It is a question
-> {: .solution}
-{: .challenge}
+> ~~~
+> $ hdfs fsck intro-to-hadoop/ -files -blocks -locations
+> ~~~
+> {: .language-bash}
+{: .slide}
 
 {% include links.md %}
