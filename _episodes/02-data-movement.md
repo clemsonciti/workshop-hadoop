@@ -26,7 +26,7 @@ keypoints:
 > ## Requesting resources
 >
 > ~~~
-> $ qsub -I -l select=3:ncpus=8:mem=14gb,walltime=03:30:00
+> $ qsub -I -l select=3:ncpus=8:mem=14gb:interconnect=1g,walltime=03:30:00
 > ~~~
 > {: .language-bash}
 {: .slide}
